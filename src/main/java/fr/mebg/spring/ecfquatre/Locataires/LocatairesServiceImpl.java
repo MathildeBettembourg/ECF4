@@ -95,4 +95,5 @@ public class LocatairesServiceImpl implements LocatairesService {
         }
         return this.save(locataireAmodifier);
     }
+
 }

@@ -27,16 +27,25 @@ public class Location extends Entity {
     @DBRef
     private Vehicule vehicule;
 
+    private int prixLocation;
+
     private int prix;
 
-    //concordance avec le front donc date de debut ici
+    //concordance avec le front donc date de debut ici et de fin
     private LocalDate fullstart;
 
     private LocalDate fullend;
 
-    @Transient//non stocké en BDD, donnée nécessaire pour le front uniquement
+    /**
+     * getDuree() permet de calculer la duree de location
+     * @return la duree non stockée en BDD
+     */
+    @Transient//non stocké en BDD, donnée nécessaire pour le front uniquement, retourne en JSON la duree de la location en jours
     public int getDuree(){
         int duree = (int)ChronoUnit.DAYS.between(fullstart, fullend)+1;
         return duree;
     }
+
+
+
 }

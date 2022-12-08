@@ -18,5 +18,6 @@ public class Vehicule extends Entity {
     private int prix;
     private Boolean disponibilite;
     private String marque;
+    private String immatriculation;
 
 }

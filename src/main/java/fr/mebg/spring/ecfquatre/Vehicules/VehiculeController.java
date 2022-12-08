@@ -18,9 +18,9 @@ public class VehiculeController {
     }
 
     /**
-     * Fonction find All permet de recuperer toutes les voitures en base de donnée.
+     * Fonction find All permet de recuperer tous les vehicules en base de donnée.
      *
-     * @return une liste de voiture.
+     * @return une liste de vehicules.
      */
     @GetMapping("")
     public List<Vehicule> findAll() {

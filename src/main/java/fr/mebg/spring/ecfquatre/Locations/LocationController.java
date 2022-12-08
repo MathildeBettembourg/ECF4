@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -71,7 +72,7 @@ public class LocationController {
      *
      * @param id     du path, venant du useParams de REACT, id de la location à modifier
      * @param entity location modifiée
-     * @return la ocation qui a été modifiée
+     * @return la location qui a été modifiée
      */
     @PutMapping("{id}")
     public Location miseAjourLocation(@PathVariable String id,
@@ -82,4 +83,8 @@ public class LocationController {
             return this.locationService.miseAjourLocation(id, entity);
         }
     }
+@GetMapping("/date")
+    public List<Location> recupLocationsFinies(@RequestParam LocalDate dateFin){
+        return this.recupLocationsFinies(dateFin);
+}
 }

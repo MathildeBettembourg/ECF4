@@ -14,8 +14,11 @@ public interface VehiculeService {
     void deleteById(String id);
 
     Vehicule modificationVehiculeById(String id, Vehicule entity);
-     boolean existsById(String id);
-     Vehicule modificationEtatVehicule(String id, String etat);
-     List<Vehicule>recupererVoitureFonctionsEtat(@RequestParam String etat);
+
+    boolean existsById(String id);
+
+    Vehicule modificationEtatVehicule(String id, String etat);
+
+    List<Vehicule> recupererVoitureFonctionsEtat(@RequestParam String etat);
 //    Boolean ajoutDeLocationDansDocumentVoiture(String id, String idl);
 }

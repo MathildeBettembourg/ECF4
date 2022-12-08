@@ -21,9 +21,9 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction find All permet de recuperer toutes les voitures en base de donnée.
+     * Fonction find All permet de recuperer tous les vehicules en base de donnée.
      *
-     * @return une liste de voiture.
+     * @return une liste de vehicule.
      */
     @Override
     public List<Vehicule> findAll() {
@@ -31,11 +31,11 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction save permet d'enregistrer une nouvelle voiture en base de donnée,
-     * un logger notifie de la creation de la voiture de type info en donnant le type et l'id.
+     * Fonction save permet d'enregistrer une nouveau vehicule en base de donnée,
+     * un logger notifie de la creation de vehicule de type info en donnant le type et l'id.
      *
-     * @param entity de type voiture
-     * @return la nouvelle voiture sauvegardée en base de données.
+     * @param entity de type vehicule
+     * @return nouveau vehicule sauvegardé en base de données.
      */
     @Override
     public Vehicule save(Vehicule entity) {
@@ -45,13 +45,13 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * FindById est une fonction qui permet de recuperer une voiture en BDD grâce à son id;
+     * FindById est une fonction qui permet de recuperer un vehicule en BDD grâce à son id;
      * Si l'id utilisé est erroné ou non présent en BDD un logger de type warn est envoyé car cela peut être lié à
      * une attaque au vu du front qui est uniquement avec des select.
      * Une reponse Http est aussi renvoyée si l(id n'existe pas en BDD.
      *
      * @param id venant du path correspondant à l'element à rechercher en BDD.
-     * @return la voiture trouvée en BDD
+     * @return vehicule trouvée en BDD
      */
     @Override
     public Vehicule findById(String id) {
@@ -62,8 +62,8 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction deleteById permet de supprimer une voiture en base de données.
-     * La suppresion étant peut courrantes on reçoit un logger de type warn à chaque deletion de voiture
+     * Fonction deleteById permet de supprimer un voiture en base de données.
+     * La suppresion étant peut courrantes on reçoit un logger de type warn à chaque deletion de vehicule
      *
      * @param id
      */
@@ -74,14 +74,14 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction put permet la mise à jours d'une voiture
+     * Fonction put permet la mise à jours d'un vehicule
      * L'id du path est recupéré,
      * une fois la concordance vérifiée on regarde si l'entité existe en BDD,
      * si oui, on la remplace par la nouvelle entité en mettant a jours celle en BDD.
      * * @param id     du path, venant du useParams de REACT
      *
-     * @param entity voiture à modifier
-     * @return la voiture qui à été modifiée
+     * @param entity vehicule à modifier
+     * @return le vehicule qui à été modifié
      */
     @Override
     public Vehicule modificationVehiculeById(String id, Vehicule entity) {
@@ -93,6 +93,7 @@ public class VehiculeServiceImpl implements VehiculeService {
             vehiculeAmodifier.setPrix(entity.getPrix());
             vehiculeAmodifier.setModele(entity.getModele());
             vehiculeAmodifier.setMarque(entity.getMarque());
+            vehiculeAmodifier.setImmatriculation(entity.getImmatriculation());
             vehiculeAmodifier.setDisponibilite(entity.getDisponibilite());
         }
         return this.save(vehiculeAmodifier);
@@ -100,7 +101,7 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction existe by id pour verifier si la voiture existe. Utilisée pour vérifier le status de la voiture
+     * Fonction existe by id pour verifier si la vehicule existe. Utilisé pour vérifier le status du vehicule
      *
      * @param id
      * @return un boolean
@@ -110,11 +111,11 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
     /**
-     * Fonction pour modifier via l'url l'etat de la voiture
+     * Fonction pour modifier via l'url l'etat du vehicule
      *
-     * @param id   de la voiture
+     * @param id   du vehicule
      * @param etat a changer
-     * @return la voiture modifiée
+     * @return le vehicul modifié
      */
     @Override
     public Vehicule modificationEtatVehicule(String id, String etat) {
@@ -133,13 +134,13 @@ public class VehiculeServiceImpl implements VehiculeService {
         return null;
     }
 /*****************************************************************************************************************************************
-    /**
-     * Fonction pour créer une liste de location de la voiture, permet de gérer les voitures
-     *
-     * @param id  de la voiture
-     * @param idl de la location
-     * @return
-     */
+ /**
+ * Fonction pour créer une liste de location de la voiture, permet de gérer les voitures
+ *
+ * @param id  de la voiture
+ * @param idl de la location
+ * @return
+ */
 //    @Override
 //    public Boolean ajoutDeLocationDansDocumentVoiture(String id, String idl) {
 //        Vehicule voitureOuDoitAjouterLocation = this.findById(id);
