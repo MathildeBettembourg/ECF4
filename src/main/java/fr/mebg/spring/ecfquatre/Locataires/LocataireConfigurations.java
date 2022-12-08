@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LocataireConfigurations {
     @Bean
-    LocatairesService locatairesService(LocatairesRepository locatairesRepository){
+    LocatairesService locatairesService(LocatairesRepository locatairesRepository) {
         return new LocatairesServiceImpl(locatairesRepository);
     }
 }

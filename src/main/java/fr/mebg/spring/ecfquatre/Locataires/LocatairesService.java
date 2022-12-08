@@ -10,4 +10,6 @@ public interface LocatairesService {
     Locataire findById(String id);
 
     void deleteById(String id);
+
+    Locataire miseAjourLocataire(String id, Locataire entity);
 }
