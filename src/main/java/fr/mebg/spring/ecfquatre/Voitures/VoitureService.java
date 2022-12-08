@@ -12,4 +12,5 @@ public interface VoitureService {
     void deleteById(String id);
 
     Voiture modificationVoitureById(String id, Voiture entity);
+    public boolean existsById(String id);
 }

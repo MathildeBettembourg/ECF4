@@ -18,4 +18,6 @@ public class Voiture {
     private int prix;
     private Boolean disponibilite;
     private String marque;
+
+
 }

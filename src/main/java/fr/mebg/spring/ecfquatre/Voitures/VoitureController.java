@@ -84,4 +84,5 @@ public class VoitureController {
             return this.voitureService.modificationVoitureById(id, entity);
         }
     }
+
 }

@@ -94,4 +94,13 @@ public class VoitureServiceImpl implements VoitureService {
         return this.save(voitureAmodifier);
 
     }
+
+    /**
+     * Fonction existe by id pour verifier si la voiture existe. Utilisée pour véréfier le status de la voiture
+     * @param id
+     * @return un boolean
+     */
+    public boolean existsById(String id) {
+        return voitureRepository.existsById(id);
+    }
 }
