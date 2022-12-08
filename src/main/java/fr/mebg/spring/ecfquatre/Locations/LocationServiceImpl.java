@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class LocationServiceImpl implements LocationService {
@@ -49,6 +50,7 @@ public class LocationServiceImpl implements LocationService {
             logger.info("Entite LOCATION sauvee en base de donnée " + voitureALouer.getModele());
             this.voitureService.modificationVoitureById(voitureALouer.getId(), voitureALouer);
         }
+        entity.setDateModification(LocalDateTime.now());
         return locationRepository.save(entity);
     }
 

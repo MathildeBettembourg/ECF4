@@ -1,5 +1,7 @@
 package fr.mebg.spring.ecfquatre.Voitures;
 
+import fr.mebg.spring.ecfquatre.Locataires.Locataire;
+import fr.mebg.spring.ecfquatre.Locations.Location;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -84,5 +86,36 @@ public class VoitureController {
             return this.voitureService.modificationVoitureById(id, entity);
         }
     }
+
+    /**
+     * Fonction de modification de l'etat de la voiture en base de donnée.
+     * @param id de la voiture recuperer en base de donnée
+     * @param etat nouvel etat de la voiture
+     * @return la voiture modifiée
+     */
+    @PostMapping("{id}/etatModification")
+    public Voiture modificationEtatVoiture(@PathVariable String id,
+                                           @RequestParam String etat){
+        return this.voitureService.modificationEtatVoiture(id, etat);
+    }
+//    @GetMapping("/etat")
+//    public List<Voiture> recupererVoitureFonctionsEtat(@RequestParam String etat){
+//        return this.voitureService.recupererVoitureFonctionsEtat(etat);
+//    }
+///************************MARCHE PAS***************************************************
+    /**
+     * ajoutDeLocationDansFicheVoiture est une fonction qui permet
+     * l'Ajout de locations dans la liste de location du document Voiture
+     *
+     * @param id
+     * @param idl
+     * @return
+     */
+//    @PostMapping("{id}/locataires")
+//    public Boolean ajoutDeLocationDansDocumentVoiture(@PathVariable String id,
+//                                                      @RequestParam String idl) {
+//       return this.voitureService.ajoutDeLocationDansDocumentVoiture(id, idl);
+//
+//    }
 
 }

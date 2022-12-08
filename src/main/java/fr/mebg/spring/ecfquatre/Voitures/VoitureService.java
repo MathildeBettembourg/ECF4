@@ -1,5 +1,8 @@
 package fr.mebg.spring.ecfquatre.Voitures;
 
+import fr.mebg.spring.ecfquatre.Locations.Location;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 public interface VoitureService {
@@ -12,5 +15,8 @@ public interface VoitureService {
     void deleteById(String id);
 
     Voiture modificationVoitureById(String id, Voiture entity);
-    public boolean existsById(String id);
+     boolean existsById(String id);
+     Voiture modificationEtatVoiture(String id, String etat);
+     List<Voiture>recupererVoitureFonctionsEtat(@RequestParam String etat);
+//    Boolean ajoutDeLocationDansDocumentVoiture(String id, String idl);
 }

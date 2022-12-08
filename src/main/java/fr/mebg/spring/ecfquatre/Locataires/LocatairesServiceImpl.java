@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,7 @@ public class LocatairesServiceImpl implements LocatairesService {
      */
     @Override
     public Locataire save(Locataire entity) {
+        entity.setDateModification(LocalDateTime.now());
         logger.info("Creation en BDD de l'entite : " + entity.getId());
         return locatairesRepository.save(entity);
     }
@@ -83,6 +86,7 @@ public class LocatairesServiceImpl implements LocatairesService {
         if (locataireAmodifier == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
+            locataireAmodifier.setDateModification(LocalDateTime.now());
             locataireAmodifier.setNom(entity.getNom());
             locataireAmodifier.setEmail(entity.getEmail());
             locataireAmodifier.setPrenom(entity.getPrenom());

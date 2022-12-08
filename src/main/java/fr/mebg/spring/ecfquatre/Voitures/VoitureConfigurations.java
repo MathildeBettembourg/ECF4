@@ -1,5 +1,6 @@
 package fr.mebg.spring.ecfquatre.Voitures;
 
+import fr.mebg.spring.ecfquatre.Locations.LocationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

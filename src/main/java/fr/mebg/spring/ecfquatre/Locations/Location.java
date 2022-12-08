@@ -1,6 +1,7 @@
 package fr.mebg.spring.ecfquatre.Locations;
 
 import fr.mebg.spring.ecfquatre.Locataires.Locataire;
+import fr.mebg.spring.ecfquatre.Utils.Entity;
 import fr.mebg.spring.ecfquatre.Voitures.Voiture;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +18,9 @@ import java.time.temporal.ChronoUnit;
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location {
-    @Id
-    private String id;
+public class Location extends Entity {
+//    @Id
+//    private String id;
 
     @DBRef
     private Locataire locataire;
