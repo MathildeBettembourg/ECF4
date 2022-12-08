@@ -1,7 +1,7 @@
 package fr.mebg.spring.ecfquatre.Locations;
 
-import fr.mebg.spring.ecfquatre.Voitures.Voiture;
-import fr.mebg.spring.ecfquatre.Voitures.VoitureService;
+import fr.mebg.spring.ecfquatre.Vehicules.Vehicule;
+import fr.mebg.spring.ecfquatre.Vehicules.VehiculeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,12 +12,12 @@ import java.util.List;
 
 public class LocationServiceImpl implements LocationService {
     private final LocationRepository locationRepository;
-    private final VoitureService voitureService;
+    private final VehiculeService vehiculeService;
     private static final Logger logger= LoggerFactory.getLogger(LocationServiceImpl.class);
 
-    public LocationServiceImpl(LocationRepository locationRepository, VoitureService voitureService) {
+    public LocationServiceImpl(LocationRepository locationRepository, VehiculeService vehiculeService) {
         this.locationRepository = locationRepository;
-        this.voitureService = voitureService;
+        this.vehiculeService = vehiculeService;
     }
 
     /**
@@ -38,20 +38,21 @@ public class LocationServiceImpl implements LocationService {
      */
     @Override
     public Location save(Location entity) {
-        Voiture voitureALouer = this.voitureService.findById(entity.getVoiture().getId());
-        logger.info("voiture " + voitureALouer.getDisponibilite());
+        Vehicule vehiculeALouer = this.vehiculeService.findById(entity.getVehicule().getId());
+        logger.info("voiture " + vehiculeALouer.getDisponibilite());
         //modification du status de disponibilité de la voiture
-        voitureALouer.setDisponibilite(false);
-        logger.info("voiture " + voitureALouer.getDisponibilite());
-        if (!this.voitureService.existsById(voitureALouer.getId())) {
+        vehiculeALouer.setDisponibilite(false);
+        logger.info("voiture " + vehiculeALouer.getDisponibilite());
+        if (!this.vehiculeService.existsById(vehiculeALouer.getId())) {
             logger.info("not found");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            logger.info("Entite LOCATION sauvee en base de donnée " + voitureALouer.getModele());
-            this.voitureService.modificationVoitureById(voitureALouer.getId(), voitureALouer);
+            logger.info("Entite LOCATION sauvee en base de donnée " + vehiculeALouer.getModele());
+            this.vehiculeService.modificationVehiculeById(vehiculeALouer.getId(), vehiculeALouer);
         }
         entity.setDateModification(LocalDateTime.now());
         return locationRepository.save(entity);
+        //return null;
     }
 
     /**
@@ -95,7 +96,7 @@ public class LocationServiceImpl implements LocationService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
             locationAmodifier.setPrix(entity.getPrix());
-            locationAmodifier.setVoiture(entity.getVoiture());
+            locationAmodifier.setVehicule(entity.getVehicule());
             locationAmodifier.setLocataire(entity.getLocataire());
             locationAmodifier.setFullstart(entity.getFullstart());
             locationAmodifier.setFullend(entity.getFullend());

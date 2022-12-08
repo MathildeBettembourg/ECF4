@@ -1,23 +1,16 @@
-package fr.mebg.spring.ecfquatre.Voitures;
+package fr.mebg.spring.ecfquatre.Vehicules;
 
-import fr.mebg.spring.ecfquatre.Locataires.Locataire;
-import fr.mebg.spring.ecfquatre.Locations.Location;
 import fr.mebg.spring.ecfquatre.Utils.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
-public class Voiture extends Entity {
+public class Vehicule extends Entity {
 //    @Id
 //    private String id;
     private String modele;

@@ -2,11 +2,10 @@ package fr.mebg.spring.ecfquatre.Locations;
 
 import fr.mebg.spring.ecfquatre.Locataires.Locataire;
 import fr.mebg.spring.ecfquatre.Utils.Entity;
-import fr.mebg.spring.ecfquatre.Voitures.Voiture;
+import fr.mebg.spring.ecfquatre.Vehicules.Vehicule;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,7 +25,7 @@ public class Location extends Entity {
     private Locataire locataire;
 
     @DBRef
-    private Voiture voiture;
+    private Vehicule vehicule;
 
     private int prix;
 

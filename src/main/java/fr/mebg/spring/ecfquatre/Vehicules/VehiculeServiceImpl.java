@@ -1,8 +1,5 @@
-package fr.mebg.spring.ecfquatre.Voitures;
+package fr.mebg.spring.ecfquatre.Vehicules;
 
-import fr.mebg.spring.ecfquatre.Locataires.LocatairesService;
-import fr.mebg.spring.ecfquatre.Locations.Location;
-import fr.mebg.spring.ecfquatre.Locations.LocationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class VoitureServiceImpl implements VoitureService {
-    private final VoitureRepository voitureRepository;
+public class VehiculeServiceImpl implements VehiculeService {
+    private final VehiculeRepository vehiculeRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(VoitureServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(VehiculeServiceImpl.class);
 
-    public VoitureServiceImpl(VoitureRepository voitureRepository) {
-        this.voitureRepository = voitureRepository;
+    public VehiculeServiceImpl(VehiculeRepository vehiculeRepository) {
+        this.vehiculeRepository = vehiculeRepository;
 
     }
 
@@ -29,8 +26,8 @@ public class VoitureServiceImpl implements VoitureService {
      * @return une liste de voiture.
      */
     @Override
-    public List<Voiture> findAll() {
-        return voitureRepository.findAll();
+    public List<Vehicule> findAll() {
+        return vehiculeRepository.findAll();
     }
 
     /**
@@ -41,10 +38,10 @@ public class VoitureServiceImpl implements VoitureService {
      * @return la nouvelle voiture sauvegardée en base de données.
      */
     @Override
-    public Voiture save(Voiture entity) {
+    public Vehicule save(Vehicule entity) {
         logger.info("Creation en base de donne de l'entite VOITURE : " + entity.getId());
         entity.setDateModification(LocalDateTime.now());
-        return voitureRepository.save(entity);
+        return vehiculeRepository.save(entity);
     }
 
     /**
@@ -57,8 +54,8 @@ public class VoitureServiceImpl implements VoitureService {
      * @return la voiture trouvée en BDD
      */
     @Override
-    public Voiture findById(String id) {
-        return voitureRepository.findById(id).orElseThrow(() -> {
+    public Vehicule findById(String id) {
+        return vehiculeRepository.findById(id).orElseThrow(() -> {
             logger.warn("tentative de recuperation d'une entite VOITURE avec un id erroné");
             return new ResponseStatusException(HttpStatus.NOT_FOUND);
         });
@@ -73,7 +70,7 @@ public class VoitureServiceImpl implements VoitureService {
     @Override
     public void deleteById(String id) {
         logger.warn("deletion de la VOITURE " + id);
-        voitureRepository.deleteById(id);
+        vehiculeRepository.deleteById(id);
     }
 
     /**
@@ -87,18 +84,18 @@ public class VoitureServiceImpl implements VoitureService {
      * @return la voiture qui à été modifiée
      */
     @Override
-    public Voiture modificationVoitureById(String id, Voiture entity) {
-        Voiture voitureAmodifier = this.findById(id);
-        if (voitureAmodifier == null) {
+    public Vehicule modificationVehiculeById(String id, Vehicule entity) {
+        Vehicule vehiculeAmodifier = this.findById(id);
+        if (vehiculeAmodifier == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            voitureAmodifier.setEtat(entity.getEtat());
-            voitureAmodifier.setPrix(entity.getPrix());
-            voitureAmodifier.setModele(entity.getModele());
-            voitureAmodifier.setMarque(entity.getMarque());
-            voitureAmodifier.setDisponibilite(entity.getDisponibilite());
+            vehiculeAmodifier.setEtat(entity.getEtat());
+            vehiculeAmodifier.setPrix(entity.getPrix());
+            vehiculeAmodifier.setModele(entity.getModele());
+            vehiculeAmodifier.setMarque(entity.getMarque());
+            vehiculeAmodifier.setDisponibilite(entity.getDisponibilite());
         }
-        return this.save(voitureAmodifier);
+        return this.save(vehiculeAmodifier);
 
     }
 
@@ -109,7 +106,7 @@ public class VoitureServiceImpl implements VoitureService {
      * @return un boolean
      */
     public boolean existsById(String id) {
-        return voitureRepository.existsById(id);
+        return vehiculeRepository.existsById(id);
     }
 
     /**
@@ -120,18 +117,18 @@ public class VoitureServiceImpl implements VoitureService {
      * @return la voiture modifiée
      */
     @Override
-    public Voiture modificationEtatVoiture(String id, String etat) {
-        Voiture voitureAModifier = this.findById(id);
-        if (Objects.equals(voitureAModifier.getEtat(), etat)) {
-            return voitureAModifier;
+    public Vehicule modificationEtatVehicule(String id, String etat) {
+        Vehicule vehiculeAModifier = this.findById(id);
+        if (Objects.equals(vehiculeAModifier.getEtat(), etat)) {
+            return vehiculeAModifier;
         }
-        voitureAModifier.setEtat(etat);
-        return this.save(voitureAModifier);
+        vehiculeAModifier.setEtat(etat);
+        return this.save(vehiculeAModifier);
     }
 
     @Override
-    public List<Voiture> recupererVoitureFonctionsEtat(String etat) {
-        List<Voiture> listeVoitureEtat = new ArrayList<>();
+    public List<Vehicule> recupererVoitureFonctionsEtat(String etat) {
+        List<Vehicule> listeVehiculeEtat = new ArrayList<>();
 
         return null;
     }
@@ -145,7 +142,7 @@ public class VoitureServiceImpl implements VoitureService {
      */
 //    @Override
 //    public Boolean ajoutDeLocationDansDocumentVoiture(String id, String idl) {
-//        Voiture voitureOuDoitAjouterLocation = this.findById(id);
+//        Vehicule voitureOuDoitAjouterLocation = this.findById(id);
 //        //liste de location ou doit ajouter location
 //        List<Location> listeLocationsDeVoiture = voitureOuDoitAjouterLocation.getLocataireActuelEtAVenir();
 //        Location locationAAjouterDansLaListe = this.locationService.findById(idl);
